@@ -8,6 +8,7 @@
 | `curl -k` | Skip SSL certificate verification |
 | `curl -v` | Show full HTTP request and response |
 | `curl -vvv` | Extremely verbose HTTP output |
+| `curl -I` | Check HTTP headers information |
 
 ## cURL Examples
 
@@ -62,9 +63,29 @@
 | Command | Description |
 |--------|------------|
 | `gobuster vhost -u http://targetIP:port -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain example.com` | Virtual host brute-force |
+| `gobuster dir -u http://target/admin -w wordlist.txt` | Enumerate deeper directories |
 
 ## Certificate Transparency Logs
 
 | Command | Description |
 |--------|------------|
 | `curl -s "https://crt.sh/?q=facebook.com&output=json" \| jq -r '.[] \| select(.name_value \| contains(\"dev\")) \| .name_value' \| sort -u` | Enumerate dev subdomains from CT logs |
+
+## Robots.txt 
+
+| Command | Description |
+|--------|------------|
+| `curl http://target/robots.txt`| Retrieve robots.txt file to try and find any hidden directories, panels, flags |
+
+## ReconSpider
+
+| Command | Description |
+|--------|------------|
+| `pip3 install scrapy` | install Scrapy |
+| `wget -O ReconSpider.zip https://academy.hackthebox.com/storage/modules/144/ReconSpider.v1.2.zip | Download ReconSpider |
+| `unzip ReconSpider.zip` | Unzip the file |
+| `python3 reconspider.py http://target` | Crawl website to enumerate URLs, endpoints, and parameters. Downloaded on files |
+
+
+
+
