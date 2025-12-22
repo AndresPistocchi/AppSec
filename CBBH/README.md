@@ -91,6 +91,8 @@
 |--------|------------|
 | `sudo nano /etc/hosts` | Add a line mapping target IP to vhost name NO PORT |
 | `whois target` | Used for recon good for organization, country, registrar info |
+| `curl web1337.inlanefreight.htb:53710/robots.txt` | Shows hidden paths |
+| `curl web1337.inlanefreight.htb:53710/admin_h1dd3n/` | Disallowed path INCLUDE the / |
 
 
 
