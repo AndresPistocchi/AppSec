@@ -96,6 +96,18 @@
 | `curl web1337.inlanefreight.htb:53710/admin_h1dd3n/` | Disallowed path INCLUDE the / | `gobuster vhost -u http://web1337.inlanefreight.htb:53710 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 500 --append-domain | Brute force for the sub-vhost |
 | `python3 ReconSpider.py http://dev.web1337.inlanefreight.htb:53710` | Crawl to find Emails/Links |
 
+### Raw Data
+
+- used gobuster to find correct vhost
+- added each discovered vhost to /etc/hosts
+- checked each vhost for additional sub vhosts
+- found robots.txt on one vhost
+- curled robots.txt
+- robots.txt revealed hidden directory /admin_h1dd3n
+- accessing /admin_h1dd3n returned 301
+- followed redirect to /admin_h1dd3n/
+- hidden admin directory accessible
+
 
 
 
