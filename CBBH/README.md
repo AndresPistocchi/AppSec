@@ -86,6 +86,11 @@
 | `unzip ReconSpider.zip` | Unzip the file |
 | `python3 reconspider.py http://target` | Crawl website to enumerate URLs, endpoints, and parameters. Downloaded on files |
 
+## Skills Assessment
+| Command | Description |
+|--------|------------|
+| `sudo nano /etc/hosts` | Add a line mapping target IP to vhost name NO PORT |
+| `whois target` | Used for recon good for organization, country, registrar info |
 
 
 
