@@ -61,6 +61,9 @@
 ## GoBuster
 ```bash
 echo "IP target.com" | sudo tee -a /etc/hosts   # add vhost to hosts file before
+-s   # include responses in filter 301, 302 etc..
+-b   # exclude responses in filter 404 (do this)
+--exclude-length   #exclude responses with specific content lengths
 ```
 | Command | Description |
 |--------|------------|
@@ -123,6 +126,13 @@ curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.s
 | `/usr/share/seclists/Discovery/Web-Content/big.txt` | Big wordlist for wide net |
 
 ## ffuf & wenum
+```bash
+-mc   # match codes/responses you want so if you want 200 -mc 200
+-fc   # exclude responses you dont want -fc 404
+-ms   # include responses that match a specific size, if a file is 3456 bytes -ms 3456
+ffuf -u http://example.com/FUZZ -w wordlist.txt -mc 200 -ms >500   # good example
+# more examples in module
+```
 | Command | Description |
 |--------|------------|
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://94.237.123.185:46201/webfuzzing_hidden_path/FUZZ -e .php,.html,.txt,.bak,.js -v` | Checks for directories by plugging in words through common.txt and replacing FUZZ. Use all extensions to not miss anything |
