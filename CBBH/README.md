@@ -109,7 +109,7 @@ sudo apt install -y golang     # Go
 sudo apt install -y python3 python3-pip
 sudo apt install pipx     # pipx
 go install github.com/ffuf/ffuf/v2@latest      #ffuf
-curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.sh | sudo bash -s $HOME/.local/bin     #FeroxBusterno 
+curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.sh | sudo bash -s $HOME/.local/bin     #FeroxBuster
 ```
 ## Word Lists
 | Command | Description |
@@ -118,4 +118,10 @@ curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.s
 | `/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt` | Dictionary Wordlist for deeper directories |
 | `/usr/share/seclists/Discovery/Web-Content/raft-large-directories.txt` | Large Dictionary |
 | `/usr/share/seclists/Discovery/Web-Content/big.txt` | Big wordlist for wide net |
+
+## ffuf
+| Command | Description |
+|--------|------------|
+| `ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://94.237.123.185:46201/webfuzzing_hidden_path/FUZZ -e .php,.html,.txt,.bak,.js -v` | Checks for directories by plugging in words through common.txt and replacing FUZZ. Use all extensions to not miss anything |
+| `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -v -u http://target:PORT/FUZZ -e .html -recursion` | Recursion Fuzzing, good for nested directories |
 
