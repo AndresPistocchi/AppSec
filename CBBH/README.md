@@ -96,18 +96,26 @@
 | `curl web1337.inlanefreight.htb:53710/admin_h1dd3n/` | Disallowed path INCLUDE the / | `gobuster vhost -u http://web1337.inlanefreight.htb:53710 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 500 --append-domain | Brute force for the sub-vhost |
 | `python3 ReconSpider.py http://dev.web1337.inlanefreight.htb:53710` | Crawl to find Emails/Links |
 
-### Raw Data
+### Conclusion
 
-- used gobuster to find correct vhost
-- added each discovered vhost to /etc/hosts
-- checked each vhost for additional sub vhosts
-- found robots.txt on one vhost
-- curled robots.txt
-- robots.txt revealed hidden directory /admin_h1dd3n
-- accessing /admin_h1dd3n returned 301
-- followed redirect to /admin_h1dd3n/
-- hidden admin directory accessible
+- used gobuster to find correct vhost, added each discovered vhost to /etc/hosts, checked each vhost for additional sub vhosts
+- found robots.txt on one vhost, curled robots.txt, robots.txt revealed hidden directory /admin_h1dd3n
+- accessing /admin_h1dd3n returned 301, followed redirect to /admin_h1dd3n/, hidden admin directory accessible
 
-
-
+# Web Fuzzing
+## Installations
+```bash
+sudo apt install -y golang     # Go
+sudo apt install -y python3 python3-pip
+sudo apt install pipx     # pipx
+go install github.com/ffuf/ffuf/v2@latest      #ffuf
+curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.sh | sudo bash -s $HOME/.local/bin     #FeroxBusterno 
+```
+## Word Lists
+| Command | Description |
+|--------|------------|
+| `/usr/share/seclists/Discovery/Web-Content/common.txt` | General Wordlist with Common directory/file names |
+| `/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt` | Dictionary Wordlist for deeper directories |
+| `/usr/share/seclists/Discovery/Web-Content/raft-large-directories.txt` | Large Dictionary |
+| `/usr/share/seclists/Discovery/Web-Content/big.txt` | Big wordlist for wide net |
 
