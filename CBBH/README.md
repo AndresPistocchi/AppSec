@@ -59,12 +59,15 @@
 | `dnsenum --enum inlanefreight.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt` | Enumerate subdomains |
 
 ## GoBuster
-
+```bash
+echo "IP target.com" | sudo tee -a /etc/hosts   # add vhost to hosts file before
+```
 | Command | Description |
 |--------|------------|
-| `gobuster vhost -u http://targetIP:port -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 500 --append-domain` | Virtual host brute-force |
+| `gobuster vhost -u http://targetIP:port -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 500 --append-domain` | Gobuster Virtual host brute-force |
 | `gobuster dir -u http://target/admin -w wordlist.txt` | Enumerate deeper directories 
 | `gobuster vhost -u http://sub vhost:port -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 500 --append-domain` | Brute-force for sub-vhosts too! |
+| `gobuster dns -d inlanefreight.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt` | Gobuster DNS fuzzing good for discovering subdomains |
 
 ## Certificate Transparency Logs
 
