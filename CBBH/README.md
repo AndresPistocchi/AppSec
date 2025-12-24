@@ -127,10 +127,16 @@ curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.s
 
 ## ffuf & wenum
 ```bash
+# ffuf
 -mc   # match codes/responses you want so if you want 200 -mc 200
 -fc   # exclude responses you dont want -fc 404
 -ms   # include responses that match a specific size, if a file is 3456 bytes -ms 3456
 ffuf -u http://example.com/FUZZ -w wordlist.txt -mc 200 -ms >500   # good example
+
+# wenum
+--hc   # exclude responses you dont want --hc 404
+--sc   # include responses you want --sc 200
+-ss    # include only responses with the specified response size --ss 205
 # more examples in module
 ```
 | Command | Description |
