@@ -119,9 +119,10 @@ curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.s
 | `/usr/share/seclists/Discovery/Web-Content/raft-large-directories.txt` | Large Dictionary |
 | `/usr/share/seclists/Discovery/Web-Content/big.txt` | Big wordlist for wide net |
 
-## ffuf
+## ffuf & wenum
 | Command | Description |
 |--------|------------|
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://94.237.123.185:46201/webfuzzing_hidden_path/FUZZ -e .php,.html,.txt,.bak,.js -v` | Checks for directories by plugging in words through common.txt and replacing FUZZ. Use all extensions to not miss anything |
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -v -u http://target:PORT/FUZZ -e .html -recursion` | Recursion Fuzzing, good for nested directories |
-
+| `ffuf -u http://83.136.255.53:44097/post.php -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "y=FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -v` | Fuzz on a POST request |
+| `wenum -w /usr/share/seclists/Discovery/Web-Content/common.txt --hc 404 -u "http://83.136.255.53:44097/get.php?x=FUZZ"` | Fuzz GET and POST parameters |
