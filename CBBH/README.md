@@ -167,5 +167,5 @@ pip3 install -r requirements.txt
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -ic -u http://hidden.fuzzing_fun.htb:40518/godeep/FUZZ -recursion` | -ic ignores comments in wordlists |
 
 - Filter noise early using -fc, -fw, or -fs
-- 403 files usually mean wrong entry point, not the vuln
+- 403 files usually mean wrong entry point, not the vuln (HTB trickery)
 - Add new vhosts to etc/hosts and ffuf each one, if there is nothing then your probably in the wrong spot
