@@ -145,3 +145,14 @@ ffuf -u http://example.com/FUZZ -w wordlist.txt -mc 200 -ms >500   # good exampl
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -v -u http://target:PORT/FUZZ -e .html -recursion` | Recursion Fuzzing, good for nested directories |
 | `ffuf -u http://83.136.255.53:44097/post.php -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "y=FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -v` | Fuzz on a POST request |
 | `wenum -w /usr/share/seclists/Discovery/Web-Content/common.txt --hc 404 -u "http://83.136.255.53:44097/get.php?x=FUZZ"` | Fuzz GET and POST parameters |
+
+## API Fuzzing
+```bash
+git clone https://github.com/PandaSt0rm/webfuzz_api.git  # installation
+cd webfuzz_api
+pip3 install -r requirements.txt
+```
+| Command | Description |
+|--------|------------|
+| `python3 api_fuzzer.py http://IP:PORT` | Run fuzzer on target |
+
