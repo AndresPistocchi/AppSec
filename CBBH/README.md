@@ -162,7 +162,8 @@ pip3 install -r requirements.txt
 | Command | Description |
 |--------|------------|
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -v -ic -u http://94.237.61.202:40518/admin/FUZZ -e .php` | Remember to add -e .php when directory fuzzing or PHP files won’t show up. |
-| `ffuf -u http://94.237.61.202:40518/admin/panel.php -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "y=FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -v` |
+| `curl http://94.237.61.202:40518/admin/panel.php` | Always curl when finding new directory, output shows parameter is accessID |
+| `ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -v -ic -u http://94.237.61.202:40518/admin/panel.php?accessID=FUZZ -fs 58` | Filter out all the same sizes to find the anomaly |
 | `ffuf -ic -u http://fuzzing_fun.htb:40518 -H "Host: FUZZ.fuzzing_fun.htb" -w /usr/share/seclists/Discovery/Web-Content/common.txt -fc 403` | Find other vhosts |
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -ic -u http://hidden.fuzzing_fun.htb:40518/godeep/FUZZ -recursion` | -ic ignores comments in wordlists |
 
