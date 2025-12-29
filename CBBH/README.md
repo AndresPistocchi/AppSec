@@ -170,3 +170,9 @@ pip3 install -r requirements.txt
 - Filter noise early using -fc, -fw, or -fs
 - 403 files usually mean wrong entry point, not the vuln (HTB trickery)
 - Add new vhosts to etc/hosts and ffuf each one, if there is nothing then your probably in the wrong spot
+
+## Java Deobfuscation
+
+- Check source code for src=js file. Deobfuscate code if needed at --> https://matthewfl.com/unPacker.html
+- https://gchq.github.io/CyberChef/ and CTRL + SHIFT + J for additional help
+
