@@ -16,6 +16,7 @@ w     # who command (checks who is logged in)
 history   # checks user's bash history
 ls -la /etc/cron.daily/   # check cron jobs
 find /proc -name cmdline -exec cat {} \; 2>/dev/null | tr " " "\n" # Look up system information through proc filesystem
+find / -user root -perm -4000 -exec ls -ldb {} \; 2>/dev/null   # Find binaries with SUID bit set
 ```
 
 ## Word Press
