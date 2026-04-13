@@ -217,7 +217,7 @@ if (isset($_GET['c'])) {
 **Takeaways**
 - This is for Blind XSS, Reflected/Stored would show already when tested.
 - Explore the site and dont use the first search you see.
-- Check source code and go step by step I just listed
+- Check source code and go step by step I just listed (take your time)
 
 ## SQLMap
 ```bash
